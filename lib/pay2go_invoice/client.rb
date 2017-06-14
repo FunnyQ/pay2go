@@ -1,4 +1,5 @@
 require 'net/http'
+require 'openssl'
 require 'cgi'
 require 'digest'
 require 'pay2go_invoice/errors'
