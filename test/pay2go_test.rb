@@ -2,12 +2,10 @@ require File.expand_path('../test_helper', __FILE__)
 
 class TestPay2goInvoice < MiniTest::Test
   def setup
-    @client = Pay2goInvoice::Client.new({
-      merchant_id: '123456',
-      hash_key: '12345678901234567890123456789012',
-      hash_iv: '1234567890123456',
-      mode: :test
-    })
+    @client = Pay2goInvoice::Client.new(merchant_id: '123456',
+                                        hash_key: '12345678901234567890123456789012',
+                                        hash_iv: '1234567890123456',
+                                        mode: :test)
   end
 
   def test_raise_invalid_mode_error
@@ -48,11 +46,11 @@ class TestPay2goInvoice < MiniTest::Test
 
   def test_mpg_check_value
     check_value = @client.make_check_value :mpg,
-      MerchantID: @client.options[:merchant_id],
-      TimeStamp: '1451577600',
-      Version: '1.1',
-      MerchantOrderNo: '20160101001',
-      Amt: 100
+                                           MerchantID: @client.options[:merchant_id],
+                                           TimeStamp: '1451577600',
+                                           Version: '1.1',
+                                           MerchantOrderNo: '20160101001',
+                                           Amt: 100
 
     assert_equal 'C3D5EABA60966C1206E95FEBB0A8023FB14562A78E2793EBBAD449885F31D8F5', check_value
   end
