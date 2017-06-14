@@ -6,18 +6,22 @@ require 'pay2go/core_ext/hash'
 
 module Pay2go
   class Client
-    TRANSACTION_API_ENDPOINTS = {
-      test: 'https://capi.pay2go.com/API/QueryTradeInfo',
-      production: 'https://api.pay2go.com/API/QueryTradeInfo'
+    INVOICE_ISSUE_API_ENDPOINTS = {
+      test: 'https://cinv.pay2go.com/API/invoice_issue',
+      production: 'https://inv.pay2go.com/API/invoice_issue'
     }.freeze
-    CREDITCARD_COLLECT_REFUND_API_ENDPOINTS = {
-      test: 'https://cweb.pay2go.com/API/CreditCard/Close',
-      production: 'https://web.pay2go.com/API/CreditCard/Close'
+    INVOICE_INVALID_API_ENDPOINTS = {
+      test: 'https://cinv.pay2go.com/API/invoice_invalid',
+      production: 'https://inv.pay2go.com/API/invoice_invalid'
     }.freeze
-    CREDITCARD_DEAUTHORIZE_API_ENDPOINTS = {
-      test: 'https://cweb.pay2go.com/API/CreditCard/Cancel',
-      production: 'https://web.pay2go.com/API/CreditCard/Cancel'
+    ALLOWANCE_ISSUE_API_ENDPOINTS = {
+      test: 'https://cinv.pay2go.com/API/allowance_issue',
+      production: 'https://inv.pay2go.com/API/allowance_issue'
     }.freeze
+    INVOICE_SEARCH_API_ENDPOINTS = {
+      test: 'https://cinv.pay2go.com/API/invoice_search',
+      production: 'https://inv.pay2go.com/API/invoice_search'
+    }
     NEED_CHECK_VALUE_APIS = [
       :query_trade_info # Transaction API
     ]
