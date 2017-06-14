@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'pay2go/version'
+require 'pay2go_invoice/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "pay2go_client"
-  spec.version       = Pay2go::VERSION
-  spec.authors       = ["Calvert"]
-  spec.email         = [""]
+  spec.name          = "pay2go_invoice_client"
+  spec.version       = Pay2goInvoice::VERSION
+  spec.authors       = ["FunnyQ"]
+  spec.email         = ["funnyq@gmail.com"]
 
-  spec.summary       = %q{API client for pay2go}
-  spec.description   = %q{API client for pay2go}
+  spec.summary       = %q{API client for pay2go invoice platform.}
+  spec.description   = %q{API client for pay2go invoice platform.}
   spec.homepage      = "https://github.com/CalvertYang/pay2go"
   spec.license       = "MIT"
 
