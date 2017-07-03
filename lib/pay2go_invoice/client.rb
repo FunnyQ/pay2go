@@ -1,5 +1,6 @@
 require 'net/http'
 require 'openssl'
+require 'json'
 require 'cgi'
 require 'digest'
 require 'pay2go_invoice/errors'
@@ -116,7 +117,7 @@ module Pay2goInvoice
       ]
 
       post_params = {
-        RespondType: 'String',
+        RespondType: 'JSON',
         Version: '1.4',
         TimeStamp: Time.now.to_i
       }.merge!(params)
@@ -124,7 +125,11 @@ module Pay2goInvoice
       post_params.delete_if { |_key, value| value.nil? }
 
       res = request :invoice_issue, post_params
-      Hash[res.body.split('&').map! { |i| URI.decode(i.force_encoding('ASCII-8BIT').force_encoding('UTF-8')).split('=') }]
+
+      reslut_hash = JSON.parse(res.body)
+      reslut_hash['Result'] = JSON.parse(reslut_hash['Result'])
+
+      reslut_hash
     end
 
     private
