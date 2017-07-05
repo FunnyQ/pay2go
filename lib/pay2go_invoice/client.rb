@@ -127,7 +127,7 @@ module Pay2goInvoice
       res = request :invoice_issue, post_params
 
       reslut_hash = JSON.parse(res.body)
-      reslut_hash['Result'] = JSON.parse(reslut_hash['Result'])
+      reslut_hash['Result'] = JSON.parse(reslut_hash['Result']) if reslut_hash['Result'].present?
 
       reslut_hash
     end
