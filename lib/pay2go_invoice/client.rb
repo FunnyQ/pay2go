@@ -132,6 +132,28 @@ module Pay2goInvoice
       reslut_hash
     end
 
+    def invoice_invalid(params = {})
+      param_required! params, %i[
+        InvoiceNumber
+        InvalidReason
+      ]
+
+      post_params = {
+        RespondType: 'JSON',
+        Version: '1.0',
+        TimeStamp: Time.now.to_i
+      }.merge!(params)
+
+      post_params.delete_if { |_key, value| value.nil? }
+
+      res = request :invoice_invalid, post_params
+
+      reslut_hash = JSON.parse(res.body)
+      reslut_hash['Result'] = JSON.parse(reslut_hash['Result']) if reslut_hash['Result'].present?
+
+      reslut_hash
+    end
+
     private
 
     def option_required!(*option_names)
@@ -164,6 +186,8 @@ module Pay2goInvoice
       case type
       when :invoice_issue
         api_url = INVOICE_ISSUE_API_ENDPOINTS[@options[:mode]]
+      when :invoice_invalid
+        api_url = INVOICE_INVALID_API_ENDPOINTS[@options[:mode]]
       end
 
       if NEED_CHECK_VALUE_APIS.include?(type)
