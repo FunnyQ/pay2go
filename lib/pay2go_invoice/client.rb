@@ -163,7 +163,6 @@ module Pay2goInvoice
         ItemUnit
         ItemPrice
         ItemAmt
-        TaxTypeForMixed
         ItemTaxAmt
         TotalAmt
         BuyerEmail
